@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="sorrowful-statues"
+run/main_scene="uid://cph6f2xh5bhtk"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
