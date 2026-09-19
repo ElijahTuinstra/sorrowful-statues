@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 3600.0
+const SPEED = 900.0
 const JUMP_VELOCITY = -900.0
 const DOWN_SPEED = -900.0
 
@@ -9,7 +9,7 @@ var scaled_gravity : float = 1.0
 var level_scaled_gravity_default : float = 1
 var double_jumped : float = false
 
-@onready var animated_sprite = $AnimatedSprite2D
+@onready var animated_sprite = $PlayerSprites
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor() and not is_on_ceiling() and Input.is_action_pressed("jump"):
