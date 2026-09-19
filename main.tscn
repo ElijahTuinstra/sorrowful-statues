@@ -2627,12 +2627,7 @@ script = ExtResource("1_h2yge")
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_1bvp3")
 animation = &"fall"
-frame_progress = 0.37171164
-
-[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1406234670]
-visible = false
-scale = Vector2(4, 4)
-texture = ExtResource("2_h2yge")
+frame_progress = 0.92727035
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=740263770]
 position = Vector2(-0.5, 0)

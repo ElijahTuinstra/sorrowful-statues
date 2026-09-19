@@ -1,27 +1,30 @@
 extends CharacterBody2D
 
-
 const SPEED = 900.0
-const JUMP_VELOCITY = -900.0
+const JUMP_VELOCITY = -600.0
 const DOWN_SPEED = -900.0
+
 var normal_gravity : bool = true
+var scaled_gravity : float = 1.0
+var level_scaled_gravity_default : float = 1.0
 
 @onready var animated_sprite = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
+	if not is_on_floor() and not is_on_ceiling() and Input.is_action_pressed("jump"):
+		scaled_gravity = 0.5
+	elif not is_on_floor() and not is_on_ceiling() and Input.is_action_pressed("down"):
+		scaled_gravity = 5
+	else:
+		scaled_gravity = level_scaled_gravity_default
+		
 	# Add the gravity.
 	if normal_gravity:
 		if not is_on_floor():
-			if Input.is_action_pressed("down"):
-				velocity.y = DOWN_SPEED * -1
-			else:
-				velocity.y += get_gravity().y * delta
+				velocity.y += get_gravity().y * delta * scaled_gravity
 	else:
 		if not is_on_ceiling():
-			if Input.is_action_pressed("down"):
-				velocity.y = DOWN_SPEED
-			else:
-				velocity.y += get_gravity().y * delta * -1
+				velocity.y += get_gravity().y * delta * scaled_gravity * -1
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump"):
@@ -76,4 +79,4 @@ func _physics_process(delta: float) -> void:
 			if velocity.y < 0:
 				animated_sprite.play("jump")
 			else:
-				animated_sprite.play("fall")		
+				animated_sprite.play("fall")
