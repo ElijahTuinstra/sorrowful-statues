@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
-const SPEED = 900.0
-const JUMP_VELOCITY = -600.0
+const SPEED = 3600.0
+const JUMP_VELOCITY = -900.0
 const DOWN_SPEED = -900.0
 
 var normal_gravity : bool = true
 var scaled_gravity : float = 1.0
-var level_scaled_gravity_default : float = 1.0
+var level_scaled_gravity_default : float = 1
+var double_jumped : float = false
 
 @onready var animated_sprite = $AnimatedSprite2D
 
@@ -30,10 +31,18 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		if normal_gravity:
 			if is_on_floor():
+				double_jumped = false
 				velocity.y = JUMP_VELOCITY
+			elif not double_jumped:
+				velocity.y = JUMP_VELOCITY
+				double_jumped = true
 		else:
 			if is_on_ceiling():
+				double_jumped = false
 				velocity.y = -JUMP_VELOCITY
+			elif double_jumped:
+				velocity.y = -JUMP_VELOCITY
+				double_jumped = true
 
 	# Handle gravity switch.
 	if Input.is_action_just_pressed("flip-gravity"):
