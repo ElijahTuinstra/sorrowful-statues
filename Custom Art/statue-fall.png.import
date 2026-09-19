@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rwfvfoiucgt2"
-path="res://.godot/imported/statue-side-left.png-c4d1b2a8006ef381e9e933a5b318aad7.ctex"
+uid="uid://da5s333r7ovy5"
+path="res://.godot/imported/statue-fall.png-ffa62c2662fe44825ecd4219f6388626.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Custom Art/statue-side-left.png"
-dest_files=["res://.godot/imported/statue-side-left.png-c4d1b2a8006ef381e9e933a5b318aad7.ctex"]
+source_file="res://Custom Art/statue-fall.png"
+dest_files=["res://.godot/imported/statue-fall.png-ffa62c2662fe44825ecd4219f6388626.ctex"]
 
 [params]
 

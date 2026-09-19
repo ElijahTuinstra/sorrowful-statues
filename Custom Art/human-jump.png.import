@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rwfvfoiucgt2"
-path="res://.godot/imported/statue-side-left.png-c4d1b2a8006ef381e9e933a5b318aad7.ctex"
+uid="uid://dq51pyjpmduyq"
+path="res://.godot/imported/human-jump.png-fa14cbdc3842aa0109fdac6bd450397b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Custom Art/statue-side-left.png"
-dest_files=["res://.godot/imported/statue-side-left.png-c4d1b2a8006ef381e9e933a5b318aad7.ctex"]
+source_file="res://Custom Art/human-jump.png"
+dest_files=["res://.godot/imported/human-jump.png-fa14cbdc3842aa0109fdac6bd450397b.ctex"]
 
 [params]
 

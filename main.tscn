@@ -1,8 +1,55 @@
 [gd_scene format=4 uid="uid://cph6f2xh5bhtk"]
 
 [ext_resource type="Script" uid="uid://ds07adpfy67cn" path="res://player.gd" id="1_h2yge"]
-[ext_resource type="Texture2D" uid="uid://bldb8c1tsajgk" path="res://Custom Art/human-front.png" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://qecbpet40ti3" path="res://Custom Art/human-fall.png" id="2_272bh"]
+[ext_resource type="Texture2D" uid="uid://54w8nm2kid0n" path="res://Custom Art/human-front.png" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://cg15dvaxteu5e" path="res://Pixel Art Platformer Asset/Tileset/tileset.png" id="3_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://dq51pyjpmduyq" path="res://Custom Art/human-jump.png" id="4_5vw27"]
+[ext_resource type="Texture2D" uid="uid://db0ldpcv4tt4b" path="res://Custom Art/human-side-left.png" id="5_kek77"]
+[ext_resource type="Texture2D" uid="uid://bioe66hpjp4vi" path="res://Custom Art/human-side-right.png" id="6_4c57u"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1bvp3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_272bh")
+}],
+"loop": 1,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h2yge")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_5vw27")
+}],
+"loop": 1,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_kek77")
+}],
+"loop": 1,
+"name": &"moving-left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_4c57u")
+}],
+"loop": 1,
+"name": &"moving-right",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
 size = Vector2(59, 128)
@@ -2576,7 +2623,14 @@ sources/1 = SubResource("TileSetAtlasSource_lquwl")
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1265426337]
 script = ExtResource("1_h2yge")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1281592875]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_1bvp3")
+animation = &"fall"
+frame_progress = 0.37171164
+
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1406234670]
+visible = false
 scale = Vector2(4, 4)
 texture = ExtResource("2_h2yge")
 
@@ -2584,7 +2638,11 @@ texture = ExtResource("2_h2yge")
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_xrivr")
 
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1158770654]
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1336858466]
 scale = Vector2(4, 4)
-tile_map_data = PackedByteArray("AAD8/wMAAQACACoAAAD8/wQAAQACACsAAAD9/wMAAQACACoAAAD9/wQAAQACACsAAAD+/wMAAQACACoAAAD+/wQAAQACACsAAAD//wMAAQACACoAAAD//wQAAQACACsAAAAAAAMAAQACACoAAAAAAAQAAQACACsAAAABAAMAAQACACoAAAABAAQAAQACACsAAAACAAMAAQACACoAAAACAAQAAQACACsAAAADAAMAAQACACoAAAADAAQAAQACACsAAAAEAAMAAQACACoAAAAEAAQAAQACACsAAAAFAAMAAQACACoAAAAFAAQAAQACACsAAAAGAAMAAQACACoAAAAGAAQAAQACACsAAAAHAAMAAQACACoAAAAHAAQAAQACACsAAAAIAAMAAQACACoAAAAIAAQAAQACACsAAAAJAAMAAQACACoAAAAJAAQAAQACACsAAAAKAAMAAQACACoAAAAKAAQAAQACACsAAAALAAMAAQACACoAAAALAAQAAQACACsAAAAMAAMAAQACACoAAAAMAAQAAQACACsAAAANAAMAAQACACoAAAANAAQAAQACACsAAAAEAAAAAQACACoAAAAEAAEAAQACACsAAAAFAAAAAQACACoAAAAFAAEAAQACACsAAAAGAAAAAQACACoAAAAGAAEAAQACACsAAAAHAAAAAQACACoAAAAHAAEAAQACACsAAAAJAAAAAQACACoAAAAJAAEAAQACACsAAAAKAAAAAQACACoAAAAKAAEAAQACACsAAAALAAAAAQACACoAAAALAAEAAQACACsAAAAMAAAAAQACACoAAAAMAAEAAQACACsAAAANAAAAAQACACoAAAANAAEAAQACACsAAAALAP3/AQACACoAAAALAP7/AQACACsAAAAMAP3/AQACACoAAAAMAP7/AQACACsAAAANAP3/AQACACoAAAANAP7/AQACACsAAAA=")
+tile_map_data = PackedByteArray("AAD4/wcAAQACABMAAAD5/wcAAQACABMAAAD6/wcAAQACABMAAAD7/wcAAQACABMAAAD8/wcAAQACABMAAAD9/wcAAQACABMAAAD+/wcAAQACABMAAAD//wcAAQACABMAAAAAAAcAAQACABMAAAABAAcAAQACABMAAAACAAcAAQACABMAAAADAAcAAQACABMAAAAEAAcAAQACABMAAAAFAAcAAQACABMAAAAGAAcAAQACABMAAAAHAAcAAQACABMAAAAIAAcAAQACABMAAAAJAAcAAQACABMAAAAKAAcAAQACABMAAAALAAcAAQACABMAAAAMAAcAAQACABMAAAANAAcAAQACABMAAAD3/wYAAQAFABYAAAD3/wUAAQAFABYAAAD3/wQAAQAFABYAAAD3/wMAAQAFABYAAAD3/wIAAQAFABYAAAD3/wEAAQAFABYAAAD3/wAAAQAFABYAAAD3////AQAFABYAAAD3//7/AQAFABYAAAD3//3/AQAFABYAAAAOAAYAAQABABUAAAAOAAUAAQABABUAAAAOAAQAAQABABUAAAAOAAMAAQABABUAAAAOAAIAAQABABUAAAAOAAEAAQABABUAAAAOAAAAAQABABUAAAAOAP//AQABABUAAAAOAP7/AQABABUAAAAOAP3/AQABABUAAAD4//z/AQACAB8AAAD5//z/AQACAB8AAAD6//z/AQACAB8AAAD7//z/AQACAB8AAAD8//z/AQACAB8AAAD9//z/AQACAB8AAAD+//z/AQACAB8AAAD///z/AQACAB8AAAAAAPz/AQACAB8AAAABAPz/AQACAB8AAAACAPz/AQACAB8AAAADAPz/AQACAB8AAAAEAPz/AQACAB8AAAAFAPz/AQACAB8AAAAGAPz/AQACAB8AAAAHAPz/AQACAB8AAAAIAPz/AQACAB8AAAAJAPz/AQACAB8AAAAKAPz/AQACAB8AAAALAPz/AQACAB8AAAAMAPz/AQACAB8AAAANAPz/AQACAB8AAAA=")
 tile_set = SubResource("TileSet_xrivr")
