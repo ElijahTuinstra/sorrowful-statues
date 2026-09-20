@@ -7,11 +7,15 @@ const DOWN_SPEED = -900.0
 var normal_gravity : bool = true
 var scaled_gravity : float = 1.0
 var level_scaled_gravity_default : float = 1
-var double_jumped : float = false
+var double_jumped : bool = false
+var wall_jump_timer : float = 0.0
 
 @onready var animated_sprite = $PlayerSprites
 
 func _physics_process(delta: float) -> void:
+	if wall_jump_timer > 0:
+		wall_jump_timer -= delta
+	
 	if not is_on_floor() and not is_on_ceiling() and Input.is_action_pressed("jump"):
 		scaled_gravity = 0.5
 	elif not is_on_floor() and not is_on_ceiling() and Input.is_action_pressed("down"):
@@ -33,6 +37,11 @@ func _physics_process(delta: float) -> void:
 			if is_on_floor():
 				double_jumped = false
 				velocity.y = JUMP_VELOCITY
+			elif is_on_wall():
+				var wall_normal_x = get_wall_normal().x
+				velocity.y = JUMP_VELOCITY
+				velocity.x = wall_normal_x * SPEED * 0.5
+				wall_jump_timer = 0.2
 			elif not double_jumped:
 				velocity.y = JUMP_VELOCITY
 				double_jumped = true
@@ -40,7 +49,11 @@ func _physics_process(delta: float) -> void:
 			if is_on_ceiling():
 				double_jumped = false
 				velocity.y = -JUMP_VELOCITY
-			elif double_jumped:
+			elif is_on_wall():
+				var wall_normal_x = get_wall_normal().x
+				velocity.y = -JUMP_VELOCITY
+				velocity.x = wall_normal_x * abs(JUMP_VELOCITY)
+			elif not double_jumped:
 				velocity.y = -JUMP_VELOCITY
 				double_jumped = true
 
@@ -52,12 +65,12 @@ func _physics_process(delta: float) -> void:
 			normal_gravity = true
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("move-left", "move-right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	if wall_jump_timer <= 0:
+		var direction := Input.get_axis("move-left", "move-right")
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
 
@@ -78,14 +91,14 @@ func _physics_process(delta: float) -> void:
 	else:
 		animated_sprite.flip_v = true
 		if is_on_ceiling():
-			if velocity.x == 0:
+			if abs(velocity.x) < 10:
 				animated_sprite.play("idle")
 			elif velocity.x > 0:
 				animated_sprite.play("moving-right")
 			elif velocity.x < 0:
 				animated_sprite.play("moving-left")
 		else:
-			if velocity.y < 0:
+			if velocity.y > 0:
 				animated_sprite.play("jump")
 			else:
 				animated_sprite.play("fall")

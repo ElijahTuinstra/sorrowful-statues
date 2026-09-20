@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cvuxumk8ay2lf" path="res://Custom Art/statue-front.png" id="3_kek77"]
 [ext_resource type="Texture2D" uid="uid://dsqf5uhlav5v1" path="res://Custom Art/statue-jump.png" id="4_4c57u"]
 [ext_resource type="Texture2D" uid="uid://dq51pyjpmduyq" path="res://Custom Art/human-jump.png" id="4_5vw27"]
+[ext_resource type="Texture2D" uid="uid://chfm6m6mtj78q" path="res://Custom Art/human-front-2.png" id="4_vivmo"]
+[ext_resource type="Texture2D" uid="uid://bihb1sb6ig8xl" path="res://Custom Art/human-front-3.png" id="5_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://rwfvfoiucgt2" path="res://Custom Art/statue-side-left.png" id="5_efxa6"]
 [ext_resource type="Texture2D" uid="uid://db0ldpcv4tt4b" path="res://Custom Art/human-side-left.png" id="5_kek77"]
 [ext_resource type="Texture2D" uid="uid://bioe66hpjp4vi" path="res://Custom Art/human-side-right.png" id="6_4c57u"]
@@ -25,8 +27,17 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("2_h2yge")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4_vivmo")
+}, {
+"duration": 2.0,
+"texture": ExtResource("5_2cqfq")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4_vivmo")
 }],
 "loop": 1,
 "name": &"idle",
@@ -2678,7 +2689,7 @@ script = ExtResource("1_h2yge")
 [node name="PlayerSprites" type="AnimatedSprite2D" parent="Player" unique_id=1281592875]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_1bvp3")
-animation = &"moving-right"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=740263770]
 position = Vector2(-0.5, 0)
