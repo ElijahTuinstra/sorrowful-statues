@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://37bqims5lm87"]
+
+[ext_resource type="Script" uid="uid://ds07adpfy67cn" path="res://player.gd" id="1_dw050"]
+[ext_resource type="Texture2D" uid="uid://qecbpet40ti3" path="res://Custom Art/human-fall.png" id="2_b26j0"]
+[ext_resource type="Texture2D" uid="uid://54w8nm2kid0n" path="res://Custom Art/human-front.png" id="3_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://chfm6m6mtj78q" path="res://Custom Art/human-front-2.png" id="4_nvl01"]
+[ext_resource type="Texture2D" uid="uid://bihb1sb6ig8xl" path="res://Custom Art/human-front-3.png" id="5_ivps1"]
+[ext_resource type="Texture2D" uid="uid://dq51pyjpmduyq" path="res://Custom Art/human-jump.png" id="6_urp6f"]
+[ext_resource type="Texture2D" uid="uid://db0ldpcv4tt4b" path="res://Custom Art/human-side-left.png" id="7_bwjto"]
+[ext_resource type="Texture2D" uid="uid://bioe66hpjp4vi" path="res://Custom Art/human-side-right.png" id="8_606se"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1bvp3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b26j0")
+}],
+"loop": 1,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("3_n7ghd")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4_nvl01")
+}, {
+"duration": 2.0,
+"texture": ExtResource("5_ivps1")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4_nvl01")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_urp6f")
+}],
+"loop": 1,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_bwjto")
+}],
+"loop": 1,
+"name": &"moving-left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_606se")
+}],
+"loop": 1,
+"name": &"moving-right",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
+size = Vector2(55, 128)
+
+[sub_resource type="Gradient" id="Gradient_ycdy4"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_13qdw"]
+gradient = SubResource("Gradient_ycdy4")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="Player" type="CharacterBody2D" unique_id=1436341173]
+light_mask = 0
+script = ExtResource("1_dw050")
+
+[node name="PlayerSprites" type="AnimatedSprite2D" parent="." unique_id=201697801]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_1bvp3")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1533795408]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_xrivr")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=896198751]
+zoom = Vector2(0.8, 0.8)
+position_smoothing_enabled = true
+position_smoothing_speed = 20.0
+
+[node name="StillLight2D" type="PointLight2D" parent="." unique_id=1779136090]
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = SubResource("GradientTexture2D_13qdw")
+texture_scale = 4.0

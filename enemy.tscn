@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://c4sxu8vrv4xeo"]
+
+[ext_resource type="Script" uid="uid://cd4ll6fd7dxcp" path="res://enemy.gd" id="1_3yqyl"]
+[ext_resource type="Texture2D" uid="uid://da5s333r7ovy5" path="res://Custom Art/statue-fall.png" id="2_wujgv"]
+[ext_resource type="Texture2D" uid="uid://cvuxumk8ay2lf" path="res://Custom Art/statue-front.png" id="3_hb8ge"]
+[ext_resource type="Texture2D" uid="uid://dsqf5uhlav5v1" path="res://Custom Art/statue-jump.png" id="4_e1ltt"]
+[ext_resource type="Texture2D" uid="uid://rwfvfoiucgt2" path="res://Custom Art/statue-side-left.png" id="5_dxifv"]
+[ext_resource type="Texture2D" uid="uid://dikisbc4dqt25" path="res://Custom Art/statue-side-right.png" id="6_pwjut"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5vw27"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wujgv")
+}],
+"loop": 1,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hb8ge")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_e1ltt")
+}],
+"loop": 1,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_dxifv")
+}],
+"loop": 1,
+"name": &"moving-left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_pwjut")
+}],
+"loop": 1,
+"name": &"moving-right",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_13qdw"]
+size = Vector2(33, 128)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1213905802]
+script = ExtResource("1_3yqyl")
+
+[node name="StatueSprites" type="AnimatedSprite2D" parent="." unique_id=628897025]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_5vw27")
+animation = &"moving-right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=367107869]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_13qdw")
