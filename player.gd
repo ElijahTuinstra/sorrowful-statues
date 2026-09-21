@@ -11,10 +11,8 @@ var double_jumped : bool = false
 var wall_jump_timer : float = 0.0
 
 @onready var animated_sprite = $PlayerSprites
-@onready var StillLight = $StillLight2D
 
 func _physics_process(delta: float) -> void:
-	StillLight.energy = 2.0
 	
 	if wall_jump_timer > 0:
 		wall_jump_timer -= delta

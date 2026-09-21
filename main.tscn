@@ -6,6 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://c4sxu8vrv4xeo" path="res://enemy.tscn" id="11_dg77c"]
 [ext_resource type="Script" uid="uid://rdxx5ms4qgnc" path="res://enemy_spawner.gd" id="16_2cqfq"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lquwl"]
+polygon = PackedVector2Array(-7.035795, -7.0357947, 7.0357943, -6.8376036, 7.1348906, 7.1348915, -6.738508, 7.1348915)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7mycd"]
+polygon = PackedVector2Array(-7.035795, -7.0357947, 7.0357943, -6.8376036, 7.1348906, 7.1348915, -6.738508, 7.1348915)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_272bh"]
+polygon = PackedVector2Array(-7.035795, -7.0357947, 7.0357943, -6.8376036, 7.1348906, 7.1348915, -6.738508, 7.1348915)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5vw27"]
+polygon = PackedVector2Array(-7.035795, -7.0357947, 7.0357943, -6.8376036, 7.1348906, 7.1348915, -6.738508, 7.1348915)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lquwl"]
 resource_name = "tiles"
 texture = ExtResource("3_1bvp3")
@@ -598,8 +610,10 @@ texture = ExtResource("3_1bvp3")
 25:12/0 = 0
 25:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 27:12/0 = 0
+27:12/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_lquwl")
 27:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 28:12/0 = 0
+28:12/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_272bh")
 28:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 60:12/0 = 0
 60:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -658,8 +672,10 @@ texture = ExtResource("3_1bvp3")
 25:13/0 = 0
 25:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 27:13/0 = 0
+27:13/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_7mycd")
 27:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 28:13/0 = 0
+28:13/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_5vw27")
 28:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 42:13/0 = 0
 42:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -2567,6 +2583,7 @@ texture = ExtResource("3_1bvp3")
 52:47/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_xrivr"]
+occlusion_layer_0/light_mask = 2
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_lquwl")
 
@@ -2574,8 +2591,8 @@ sources/1 = SubResource("TileSetAtlasSource_lquwl")
 script = ExtResource("1_yaehf")
 
 [node name="Player" parent="." unique_id=1436341173 instance=ExtResource("2_lquwl")]
-top_level = true
-light_mask = 1
+top_level = false
+light_mask = 0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1336858466]
 scale = Vector2(4, 4)
@@ -2587,4 +2604,5 @@ script = ExtResource("16_2cqfq")
 enemy_scene = ExtResource("11_dg77c")
 
 [node name="Blackout" type="CanvasModulate" parent="." unique_id=365360729]
-color = Color(0.054772303, 0.0064187213, 0.0064192186, 1)
+show_behind_parent = true
+color = Color(0, 0, 0, 1)

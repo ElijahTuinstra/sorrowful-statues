@@ -64,37 +64,36 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
 size = Vector2(55, 128)
 
-[sub_resource type="Gradient" id="Gradient_ycdy4"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+[sub_resource type="Gradient" id="Gradient_dw050"]
+offsets = PackedFloat32Array(0, 0.5875, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.089041114, 0.089041114, 0.089041114, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_13qdw"]
-gradient = SubResource("Gradient_ycdy4")
-width = 256
-height = 256
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b1lj4"]
+gradient = SubResource("Gradient_dw050")
+width = 512
+height = 512
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
 
-[node name="Player" type="CharacterBody2D" unique_id=1436341173]
-light_mask = 0
+[node name="Player" type="CharacterBody2D" unique_id=808818568]
+top_level = true
 script = ExtResource("1_dw050")
 
-[node name="PlayerSprites" type="AnimatedSprite2D" parent="." unique_id=201697801]
+[node name="PlayerSprites" type="AnimatedSprite2D" parent="." unique_id=213259381]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_1bvp3")
 animation = &"idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1533795408]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=738771734]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_xrivr")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=896198751]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2038801084]
 zoom = Vector2(0.8, 0.8)
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 
-[node name="StillLight2D" type="PointLight2D" parent="." unique_id=1779136090]
-shadow_enabled = true
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1528396873]
+energy = 6.0
 shadow_color = Color(0, 0, 0, 1)
-texture = SubResource("GradientTexture2D_13qdw")
-texture_scale = 4.0
+texture = SubResource("GradientTexture2D_b1lj4")
